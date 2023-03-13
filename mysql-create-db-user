@@ -1,0 +1,14 @@
+# Login like root to MySQL Server 
+sudo mysql -u root -p
+
+# Create MySQL DB
+CREATE DATABASE dbname;
+
+# Create User and attach Privileges for DB
+CREATE USER 'username'@'localhost' IDENTIFIED BY 'password';
+GRANT ALL PRIVILEGES ON dbname.* TO 'username'@'localhost';
+
+# Verify that the DB and User successfully created
+SHOW DATABASES;
+SELECT User FROM mysql.user;
+
