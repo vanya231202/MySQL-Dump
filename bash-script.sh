@@ -14,7 +14,8 @@ DB_NAME="$DB_NAME"
 TMP_DIR=$(mktemp -d)
 
 # Dump MySQL database to temporary directory, ignoring logs table
-mysqldump --no-tablespaces -u $DB_USER $DB_NAME > $TMP_DIR/db.sql
+mysqldump --no-tablespaces -u $DB_USER -p$DB_PASS --single-transaction --skip-lock-tables --ignore-table=$DB_NAME.logs $DB_NAME > $TMP_DIR/db.sql
+
 
 # Create a timestamped zip archive of the dump file
 ZIP_FILE="$TMP_DIR/db-$(date +'%Y-%m-%d_%H-%M-%S').zip"
